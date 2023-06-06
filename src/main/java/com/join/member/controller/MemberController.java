@@ -90,4 +90,16 @@ public class MemberController {
         session.invalidate();
         return "index";
     }
+
+    @PostMapping("/member/email-check")
+    public @ResponseBody String emailCheck(@RequestParam("memberEmail") String memberEmail) {
+        System.out.println("memberEmail = " + memberEmail);
+        String checkResult = memberService.emailCheck(memberEmail);
+        if (checkResult != null) {
+            return "ok";
+        } else {
+            return "no";
+        }
+
+    }
 }
